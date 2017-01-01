@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+}
+
+.app-content {
+  padding: 20px;
+  background-image: url(assets/img/wb3ujikljwq-seth-schwiet.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.app-content md-card {
+  border-radius: 0px 25px 0px 25px;
+}
+
+md-spinner {
+  margin: 0 auto;
+  padding: 25%;
+  display: block;
+  height: 30px;
+  width: 30px;
+}

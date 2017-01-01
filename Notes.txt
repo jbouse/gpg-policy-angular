@@ -1,0 +1,60 @@
+Component logic for CryptoJS
+----------------------------
+
+  algorithms:   any = {
+    'MD5':    CryptoJS.MD5,
+    'SHA1':   CryptoJS.SHA1,
+    'SHA256': CryptoJS.SHA256,
+    'SHA384': CryptoJS.SHA384,
+    'SHA512': CryptoJS.SHA512
+  };
+  hashes:       any[] = [];
+
+  constructor() {
+    for (let algo in this.algorithms) {
+      let hash = this.algorithms[algo](this.title);
+      let bs = this.algorithms[algo]().sigBytes;
+      console.log(this.algorithms[algo]())
+      this.hashes.push({name: algo, sum: hash, blocksize: bs})
+    }
+  }
+
+Component template for CryptoJS
+-------------------------------
+
+<md-sidenav-container [class.m2app-dark]="isDarkTheme">
+
+  <md-sidenav #sidenav mode="over" class="app-sidenav">
+    Sidenav
+  </md-sidenav>
+
+  <md-toolbar color="primary">
+    {{ title }}
+    <span class="app-toolbar-filler"></span>
+    <button md-button (click)="isDarkTheme = !isDarkTheme">TOGGLE DARK THEME</button>
+  </md-toolbar>
+
+  <div class="app-content">
+    <!-- Fill in application content here  -->
+    <md-card>
+      <md-card-header>
+        <md-card-title>
+          <md-icon color="accent">lock</md-icon>CryptoJS Hashes
+        </md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <md-list>
+          <md-list-item *ngFor="let hash of hashes">
+            <h3 md-line>Hash: {{hash.name}}</h3>
+            <p md-line class="demo-secondary-text">Checksum: {{hash.sum}}</p>
+            <p md-line class="demo-secondary-text">Size: {{hash.blocksize}}</p>
+          </md-list-item>
+        </md-list>
+      </md-card-content>
+    </md-card>
+  </div>
+
+</md-sidenav-container>
+<span class="app-action" [class.m2app-dark]="isDarkTheme">
+  <button md-fab  (click)="sidenav.toggle()"><md-icon>menu</md-icon></button>
+</span>
